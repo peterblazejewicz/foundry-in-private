@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-marketplace.json",
+  "name": "foundry-in-private",
+  "owner": {
+    "name": "foundry-in-private"
+  },
+  "metadata": {
+    "description": "Project marketplace: a pinned subset of microsoft/azure-skills for the VENTUNO Q inspection cell."
+  },
+  "plugins": [
+    {
+      "name": "cell-azure",
+      "description": "Five Azure skills for the cell (microsoft-foundry, azure-validate, azure-quotas, foundry-iq, cost-estimation) from microsoft/azure-skills at a pinned commit. Pinned Azure MCP server with telemetry off; Cost Management MCP. No hooks.",
+      "license": "MIT",
+      "homepage": "https://github.com/microsoft/azure-skills",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/microsoft/azure-skills.git",
+        "path": ".github/plugins",
+        "sha": "7847020998043c6231929b364c35393b7cdab270"
+      },
+      "skills": [
+        "./azure-skills/skills/microsoft-foundry",
+        "./azure-skills/skills/azure-validate",
+        "./azure-skills/skills/azure-quotas",
+        "./foundry-iq-skills/skills/foundry-iq",
+        "./azure-cost/skills/cost-estimation"
+      ],
+      "mcpServers": {
+        "azure": {
+          "type": "stdio",
+          "command": "npx",
+          "args": ["-y", "@azure/mcp@4.0.0-beta.7", "server", "start"],
+          "env": {
+            "AZURE_MCP_COLLECT_TELEMETRY": "false"
+          }
+        },
+        "azure-cost": {
+          "type": "http",
+          "url": "https://mcp.management.azure.com",
+          "headers": {
+            "x-mcp-toolset": "CostManagement"
+          }
+        }
+      }
+    }
+  ]
+}

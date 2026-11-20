@@ -1,0 +1,41 @@
+# Default: text, LF in the repo and in the working tree (the boards are Linux).
+* text=auto eol=lf
+
+# Windows scripts keep CRLF.
+*.ps1  text eol=crlf
+*.psm1 text eol=crlf
+*.cmd  text eol=crlf
+*.bat  text eol=crlf
+
+# Solution files: LF is fine for the .NET 10 SDK and Rider/VS.
+*.slnx text eol=lf
+
+# Binaries: never diff, never normalise.
+*.onnx        binary
+*.gguf        binary
+*.bin         binary
+*.safetensors binary
+*.tflite      binary
+*.dlc         binary
+*.png         binary
+*.jpg         binary
+*.jpeg        binary
+*.gif         binary
+*.webp        binary
+*.ico         binary
+*.pdf         binary
+*.ttf         binary
+*.otf         binary
+*.woff        binary
+*.woff2       binary
+*.wav         binary
+*.mp3         binary
+*.mp4         binary
+*.zip         binary
+*.tar         binary
+*.gz          binary
+*.sqlite      binary
+
+# Lock files: no merge noise in diffs.
+uv.lock               linguist-generated=true -diff
+packages.lock.json    linguist-generated=true -diff

@@ -1,0 +1,69 @@
+[project]
+name = "foundry-in-private"
+version = "0.0.0"
+description = "VENTUNO Q inspection cell: workspace root (not a package)."
+requires-python = ">=3.12,<3.13"
+
+[dependency-groups]
+dev = [
+  "pytest>=9.2",
+  "pyright>=1.1.414",
+  "ruff>=0.17.6",
+  "pre-commit>=4.3",
+]
+
+[tool.uv]
+package = false
+
+[tool.uv.workspace]
+members = ["edge/shared", "edge/board_a", "edge/board_b"]
+
+# ---------------- ruff ----------------
+[tool.ruff]
+target-version = "py312"
+line-length = 100
+src = ["edge/shared/src", "edge/board_a/src", "edge/board_b/src"]
+
+[tool.ruff.lint]
+select = [
+  "E", "W", "F",   # pycodestyle, pyflakes
+  "I",             # isort
+  "N",             # pep8-naming
+  "UP",            # pyupgrade
+  "B",             # bugbear
+  "SIM",           # simplify
+  "PT",            # pytest style
+  "RUF",           # ruff-specific
+  "S",             # bandit (security)
+  "ASYNC",         # async pitfalls
+  "DTZ",           # timezone-aware datetimes (findings carry UTC timestamps)
+  "PL",            # pylint subset
+]
+ignore = [
+  "PLR2004",       # magic values: thresholds live in config, tests compare literals
+]
+
+[tool.ruff.lint.per-file-ignores]
+"**/tests/**" = ["S101", "PLR2004"]
+
+[tool.ruff.format]
+quote-style = "double"
+line-ending = "lf"
+
+# ---------------- pyright ----------------
+[tool.pyright]
+pythonVersion = "3.12"
+typeCheckingMode = "basic"
+strict = ["edge/shared/src"]
+include = ["edge"]
+exclude = ["**/.venv", "**/__pycache__"]
+venvPath = "."
+venv = ".venv"
+reportMissingTypeStubs = "warning"
+reportUnnecessaryTypeIgnoreComment = "error"
+
+# ---------------- pytest ----------------
+[tool.pytest.ini_options]
+testpaths = ["edge/shared/tests", "edge/board_a/tests", "edge/board_b/tests"]
+addopts = ["-ra", "--strict-markers", "--strict-config", "--import-mode=importlib"]
+xfail_strict = true

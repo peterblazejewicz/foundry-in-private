@@ -1,0 +1,10 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/Screen.Core/Screen.Core.csproj" />
+    <Project Path="src/Screen.A/Screen.A.csproj" />
+    <Project Path="src/Screen.B/Screen.B.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/Screen.Core.Tests/Screen.Core.Tests.csproj" />
+  </Folder>
+</Solution>

@@ -1,0 +1,71 @@
+# --- OS / editors ---
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+.idea/
+*.swp
+*.DotSettings.user
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+.ruff_cache/
+.pyright/
+.mypy_cache/
+.coverage
+coverage.xml
+htmlcov/
+*.egg-info/
+dist/
+build/
+
+# --- .NET ---
+bin/
+obj/
+publish/
+artifacts/
+TestResults/
+*.user
+*.binlog
+.vs/
+
+# --- Azure / azd ---
+.azure/
+*.env
+.env
+.env.*
+!.env.example
+local.settings.json
+
+# --- Large files: tracked by manifests, never by git ---
+*.onnx
+*.gguf
+*.bin
+*.safetensors
+*.pt
+*.tflite
+*.dlc
+*.qnn
+*.serialized
+datasets/
+cache/
+/models/*
+!/models/manifest.json
+!/models/README.md
+/tools/replay/data/
+
+# --- Runtime data ---
+*.sqlite
+*.sqlite3
+*.db
+logs/
+*.log
+
+# --- Claude Code (personal) ---
+.claude/settings.local.json
+CLAUDE.local.md

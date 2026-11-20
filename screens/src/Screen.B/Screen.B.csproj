@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>Screen.B</RootNamespace>
+    <AssemblyName>screen-b</AssemblyName>
+    <!-- Board B: framework-dependent publish; the board has the .NET 10 runtime. -->
+    <RuntimeIdentifiers>linux-arm64</RuntimeIdentifiers>
+    <SelfContained>false</SelfContained>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Screen.Core\Screen.Core.csproj" />
+  </ItemGroup>
+</Project>

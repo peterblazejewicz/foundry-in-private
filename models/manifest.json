@@ -1,0 +1,4 @@
+{
+  "$comment": "Model files for the boards. Not in git. Fetch to each board's NVMe; check sha256 after each download.",
+  "models": []
+}

@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "outputStyle": "terse",
+  "env": {
+    "AZURE_MCP_COLLECT_TELEMETRY": "false"
+  },
+  "extraKnownMarketplaces": {
+    "foundry-in-private": {
+      "source": {
+        "source": "directory",
+        "path": "./"
+      }
+    }
+  },
+  "enabledPlugins": {
+    "cell-azure@foundry-in-private": true
+  },
+  "permissions": {
+    "allow": [
+      "Bash(uv sync *)",
+      "Bash(uv run ruff *)",
+      "Bash(uv run pyright*)",
+      "Bash(uv run pytest*)",
+      "Bash(uv run pre-commit run *)",
+      "Bash(dotnet restore *)",
+      "Bash(dotnet build *)",
+      "Bash(dotnet test *)",
+      "Bash(dotnet format *)",
+      "Bash(git status*)",
+      "Bash(git diff*)",
+      "Bash(git log*)",
+      "Bash(git branch*)",
+      "Bash(git switch -c *)"
+    ],
+    "ask": [
+      "Bash(git push *)",
+      "Bash(gh pr create *)",
+      "Bash(azd up*)",
+      "Bash(azd provision*)",
+      "Bash(azd deploy*)",
+      "Bash(azd down*)",
+      "Bash(az deployment *)",
+      "Bash(az group *)",
+      "Bash(ssh *)",
+      "Bash(scp *)",
+      "Bash(rsync *)",
+      "mcp__plugin_cell-azure_azure__*",
+      "mcp__plugin_cell-azure_azure-cost__*"
+    ],
+    "deny": [
+      "Bash(git push origin main*)",
+      "Bash(git push * main)",
+      "Bash(git push * main:*)",
+      "Bash(git push * HEAD:main*)",
+      "Bash(git push * refs/heads/main*)",
+      "Bash(git push --force*)",
+      "Bash(git push * --force*)",
+      "Bash(git push -f*)",
+      "Bash(git push * -f*)",
+      "Bash(git push * --no-verify*)",
+      "Bash(git commit * --no-verify*)",
+      "Bash(git reset --hard*)",
+      "Bash(gh pr merge *)",
+      "Read(./.env)",
+      "Read(./.env.*)",
+      "Read(./.azure/**)"
+    ]
+  }
+}
