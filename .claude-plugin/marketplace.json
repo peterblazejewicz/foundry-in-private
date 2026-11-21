@@ -10,7 +10,7 @@
   "plugins": [
     {
       "name": "cell-azure",
-      "description": "Five Azure skills for the cell (microsoft-foundry, azure-validate, azure-quotas, foundry-iq, cost-estimation) from microsoft/azure-skills at a pinned commit. Pinned Azure MCP server with telemetry off; Cost Management MCP. No hooks.",
+      "description": "Five Azure skills for the cell (microsoft-foundry, azure-validate, azure-quotas, foundry-iq, cost-estimation) from microsoft/azure-skills at a pinned commit. Pinned Azure MCP server with telemetry off. No hooks.",
       "license": "MIT",
       "homepage": "https://github.com/microsoft/azure-skills",
       "source": {
@@ -33,13 +33,6 @@
           "args": ["-y", "@azure/mcp@4.0.0-beta.7", "server", "start"],
           "env": {
             "AZURE_MCP_COLLECT_TELEMETRY": "false"
-          }
-        },
-        "azure-cost": {
-          "type": "http",
-          "url": "https://mcp.management.azure.com",
-          "headers": {
-            "x-mcp-toolset": "CostManagement"
           }
         }
       }
