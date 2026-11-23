@@ -1,0 +1,18 @@
+{
+  "inspection_id": "insp-2026-11-20T21-14-07Z-A-0142",
+  "part_id": "1142",
+  "captured_at": "2026-11-20T21:14:07.412Z",
+  "camera": { "model": "Jabra PanaCast 20", "resolution": [3840, 2160], "intelligent_zoom": false },
+  "detector": { "model": "yolox-s-defects", "version": "1.2.0", "runtime": "ort-qnn-htp", "latency_ms": 38 },
+  "detections": [
+    { "label": "scratch", "confidence": 0.87, "bbox_xyxy": [1412, 820, 1690, 905] },
+    { "label": "missing_stud", "confidence": 0.41, "bbox_xyxy": [2010, 640, 2140, 760] }
+  ],
+  "images": {
+    "full": "http://board-a.lan:8080/images/insp-2026-11-20T21-14-07Z-A-0142/full.jpg",
+    "crops": [
+      "http://board-a.lan:8080/images/insp-2026-11-20T21-14-07Z-A-0142/crop-0.jpg",
+      "http://board-a.lan:8080/images/insp-2026-11-20T21-14-07Z-A-0142/crop-1.jpg"
+    ]
+  }
+}

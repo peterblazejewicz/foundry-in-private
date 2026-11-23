@@ -1,0 +1,103 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:foundry-in-private:contracts:vision-inspect-result:1.0.0",
+  "title": "VisionInspectResult",
+  "description": "Result of the vision.inspect MCP tool (architecture §7.2), board A to board B.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["inspection_id", "part_id", "captured_at", "camera", "detector", "detections", "images"],
+  "properties": {
+    "inspection_id": {
+      "description": "Correlation key of one inspection.",
+      "type": "string",
+      "pattern": "^insp-[A-Za-z0-9-]+$",
+      "maxLength": 128
+    },
+    "part_id": {
+      "description": "Identifier of the inspected part.",
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 64
+    },
+    "captured_at": {
+      "description": "Capture time in UTC, RFC 3339 with a Z offset.",
+      "type": "string",
+      "format": "date-time",
+      "pattern": "Z$"
+    },
+    "camera": { "$ref": "#/$defs/Camera" },
+    "detector": { "$ref": "#/$defs/Detector" },
+    "detections": {
+      "description": "Detections in descending confidence order. Empty when the detector found nothing.",
+      "type": "array",
+      "items": { "$ref": "#/$defs/Detection" }
+    },
+    "images": { "$ref": "#/$defs/Images" }
+  },
+  "$defs": {
+    "Camera": {
+      "title": "Camera",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["model", "resolution", "intelligent_zoom"],
+      "properties": {
+        "model": { "type": "string", "minLength": 1 },
+        "resolution": {
+          "description": "Frame size in pixels: [width, height].",
+          "type": "array",
+          "items": { "type": "integer", "minimum": 1 },
+          "minItems": 2,
+          "maxItems": 2
+        },
+        "intelligent_zoom": { "type": "boolean" }
+      }
+    },
+    "Detector": {
+      "title": "Detector",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["model", "version", "runtime", "latency_ms"],
+      "properties": {
+        "model": { "type": "string", "minLength": 1 },
+        "version": { "type": "string", "minLength": 1 },
+        "runtime": { "type": "string", "minLength": 1 },
+        "latency_ms": { "type": "number", "minimum": 0 }
+      }
+    },
+    "Detection": {
+      "title": "Detection",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["label", "confidence", "bbox_xyxy"],
+      "properties": {
+        "label": { "type": "string", "minLength": 1 },
+        "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+        "bbox_xyxy": {
+          "description": "Box in full-frame pixels: [x_min, y_min, x_max, y_max], with x_max > x_min and y_max > y_min.",
+          "type": "array",
+          "items": { "type": "integer", "minimum": 0 },
+          "minItems": 4,
+          "maxItems": 4
+        }
+      }
+    },
+    "Images": {
+      "title": "Images",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["full", "crops"],
+      "properties": {
+        "full": {
+          "description": "LAN URL of the full frame on board A.",
+          "type": "string",
+          "format": "uri"
+        },
+        "crops": {
+          "description": "LAN URLs of the crops on board A, one per detection, in the same order.",
+          "type": "array",
+          "items": { "type": "string", "format": "uri" }
+        }
+      }
+    }
+  }
+}

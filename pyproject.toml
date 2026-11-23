@@ -10,6 +10,8 @@ dev = [
   "pyright>=1.1.414",
   "ruff>=0.17.6",
   "pre-commit>=4.3",
+  "jsonschema[format-nongpl]>=4.26",
+  "datamodel-code-generator==0.100.0",
 ]
 
 [tool.uv]

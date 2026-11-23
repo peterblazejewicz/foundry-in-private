@@ -40,6 +40,8 @@ jobs:
       - run: dotnet restore screens/Screens.slnx --locked-mode
       - run: dotnet build screens/Screens.slnx -c Release --no-restore
       - run: dotnet test --solution screens/Screens.slnx -c Release --no-build
+      - name: Contract models are current generator output
+        run: dotnet run --project screens/tools/ContractGen -c Release --no-build -- --check
       - run: dotnet format screens/Screens.slnx --verify-no-changes --no-restore
       - run: dotnet publish screens/src/Screen.B/Screen.B.csproj -c Release -r linux-arm64 --self-contained false -o out/screen-b
 
