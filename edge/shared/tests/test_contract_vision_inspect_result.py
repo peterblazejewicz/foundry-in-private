@@ -57,6 +57,10 @@ def _extra_field(d: dict[str, Any]) -> None:
     d["unexpected"] = 1
 
 
+def _nested_extra_field(d: dict[str, Any]) -> None:
+    d["detections"][0]["unexpected"] = 1
+
+
 def _confidence_above_one(d: dict[str, Any]) -> None:
     d["detections"][0]["confidence"] = 1.5
 
@@ -75,6 +79,7 @@ def _captured_at_not_utc(d: dict[str, Any]) -> None:
 
 BAD_INPUTS = {
     "extra_field": _extra_field,
+    "nested_extra_field": _nested_extra_field,
     "confidence_above_one": _confidence_above_one,
     "bbox_of_three": _bbox_of_three,
     "no_inspection_id": _no_inspection_id,
